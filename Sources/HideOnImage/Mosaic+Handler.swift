@@ -13,18 +13,20 @@ import Vision
 extension Mosaic {
     public func handleDetectedFaces(request: VNRequest?, error: Error?) {
         if let error = error {
+            // TODO: - 커스텀 에러 처리
             print(error.localizedDescription)
-//            delegate?.faceDetectDidFail()
             return
         }
         
-        // 인식한 얼굴의 위치에 사각형을 그려주는 작업. 화면에 그리는 것이기 때문에 main thread에서 작업해야 함.
-//        DispatchQueue.main.async {
-//            guard let drawLayer = self.pathLayer,
-//                  let results = request?.results as? [VNFaceObservation] else { return }
-//            if results.isEmpty { self.delegate?.faceDetectCountZero() } // 인식된 얼굴이 없을 때 delegate메서드 호출
-//            self.delegate?.drawFaceDetection(faces: results, onImageWithBounds: drawLayer.bounds)
-//            drawLayer.setNeedsDisplay()
-//        }
+        // 감지된 정보를 정제해서 Mosaic클래스의 detectBoundInfo에 삽입한다.
+        guard let results = request?.results as? [VNFaceObservation] else {
+            // TODO: - 커스텀 에러 처리
+            return
+        }
+        
+        results.forEach { observation in
+            let bound = observation.boundingBox
+            self.addDetectInfo(bound: bound)
+        }
     }
 }
