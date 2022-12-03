@@ -17,6 +17,7 @@ extension Mosaic {
             print("Can not find UIImage")
             return
         }
+        self.currentImage = image
         let cgOrientation = CGImagePropertyOrientation(image.imageOrientation)
         startVisionRequest(image: cgImage, orientation: cgOrientation)
     }
@@ -48,8 +49,18 @@ extension Mosaic {
         return [faceDetectionRequest]
     }
     
-    public addDetectInfo(bound: CGRect) {
+    public func addDetectInfo(bound: CGRect) {
         
+        guard let image = currentImage else { return }
+        
+        let width = image.size.width * bound.size.width
+        let height = image.size.height * bound.size.height
+        let xCoordinate = image.size.width * bound.origin.x
+        let yCoordinate = (image.size.height * (1 - bound.origin.y)) - height
+        
+        let rect = CGRect(x: xCoordinate, y: yCoordinate, width: width, height: height)
+        
+        self.detectBoundInfo.append(rect)
     }
 }
 
