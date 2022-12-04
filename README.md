@@ -1,5 +1,7 @@
 # HideOnImage
 
+<img width="250" src="https://user-images.githubusercontent.com/76734067/205492354-c4dbf695-89ae-45db-9e4b-bade52a91194.gif">
+
 `HideOnImage`는 얼굴인식 자동모자이크 라이브러리입니다. 자동으로 이미지의 얼굴을 인식하고 모자이크 처리해줍니다.
 
 ## 설치
