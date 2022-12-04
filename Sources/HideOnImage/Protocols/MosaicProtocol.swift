@@ -17,6 +17,6 @@ public protocol MosaicProtocol {
 
 public protocol MosaicDelegate {
     
-    func MosaicImageProcessDidFinish(with image: UIImage)
+    func MosaicImageProcessDidFinish(with result: UIImage)
     
 }
