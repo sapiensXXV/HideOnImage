@@ -10,7 +10,7 @@ import Foundation
 
 public enum FilterType: String {
     // TODO: - 추후 추가적인 필터 추가
-    case CIGuassianFilter
+    case CIGaussianBlur
     case CISourceOverCompositing
     case CIBlendWithMask
     case CIRadialGradient

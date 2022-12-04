@@ -12,7 +12,7 @@ extension CIImage {
 
     public func gaussianBlur(radius: CGFloat = 15) -> CIImage? {
         return CIFilter(
-            name: FilterType.CIGuassianFilter.rawValue,
+            name: FilterType.CIGaussianBlur.rawValue,
             parameters: [
                 kCIInputRadiusKey: radius,
                 kCIInputImageKey: self,
@@ -30,7 +30,7 @@ extension CIImage {
             let height = $0.size.height
             let xCenterCoordinate = $0.origin.x + (width / 2)
             let yCenterCoordinate = (extent.height - $0.maxY) + (height / 2)
-            let radius = 15
+            let radius = min(width, height) / 2.2
             
             let areaImage = CIFilter(
                 name: FilterType.CIRadialGradient.rawValue,
