@@ -1,0 +1,16 @@
+//
+//  File.swift
+//  
+//
+//  Created by Jaehoon So on 2022/12/04.
+//
+
+import Foundation
+
+
+public enum FilterType: String {
+    // TODO: - 추후 추가적인 필터 추가
+    case CIGuassianFilter
+    case CISourceOverCompositing
+    case CIBlendWithMask
+}
