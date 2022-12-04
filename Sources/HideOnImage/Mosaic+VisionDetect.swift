@@ -42,15 +42,12 @@ extension Mosaic {
     }
     
     public func createVisionRequest() -> [VNRequest] {
-        guard let faceDetectionRequest = faceDetectionRequest else {
-            print("Failed to generate face detection request.")
-            return []
-        }
-        return [faceDetectionRequest]
+        var requests: [VNRequest] = []
+        requests.append(faceDetectionRequest)
+        return requests
     }
     
     public func addDetectInfo(bound: CGRect) {
-        
         guard let image = currentImage else { return }
         
         let width = image.size.width * bound.size.width
