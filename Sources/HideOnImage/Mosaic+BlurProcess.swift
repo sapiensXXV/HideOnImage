@@ -34,8 +34,13 @@ extension Mosaic {
         }
         
         guard let ciImage = CIImage(image: image),
-              let mosaicImage = ciImage
+              let mosaicImage = ciImage.gaussianBlur() else {
+            // TODO: - 이미지처리 실패 에러
+            return
+        }
         
+        let completeImage = UIImage(ciImage: mosaicImage)
+        delegate?.MosaicImageProcessDidFinish(with: completeImage)
     }
     
 }
