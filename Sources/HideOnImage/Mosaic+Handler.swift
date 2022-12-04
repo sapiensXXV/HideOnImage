@@ -28,5 +28,7 @@ extension Mosaic {
             let bound = observation.boundingBox
             self.addDetectInfo(bound: bound)
         }
+        
+        // 이미지 처리해서 반환한다. 아니면 delegate를 두고 결과를 받도록 해야하나?
     }
 }

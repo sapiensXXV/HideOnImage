@@ -63,5 +63,3 @@ extension Mosaic {
         self.detectBoundInfo.append(rect)
     }
 }
-
-
