@@ -29,6 +29,7 @@ extension Mosaic {
             self.addDetectInfo(bound: bound)
         }
         
-        // 이미지 처리해서 반환한다. 아니면 delegate를 두고 결과를 받도록 해야하나?
+        // 이미지를 처리해서 delegate 메서드로 전달한다.
+        applyMosaic()
     }
 }
