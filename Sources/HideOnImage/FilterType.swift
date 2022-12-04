@@ -13,4 +13,5 @@ public enum FilterType: String {
     case CIGuassianFilter
     case CISourceOverCompositing
     case CIBlendWithMask
+    case CIRadialGradient
 }

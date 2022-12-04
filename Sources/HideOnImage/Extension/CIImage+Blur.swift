@@ -29,17 +29,17 @@ extension CIImage {
             let width = $0.size.width
             let height = $0.size.height
             let xCenterCoordinate = $0.origin.x + (width / 2)
-            let yCenterCoordinate = $0.origin.y + (height / 2)
+            let yCenterCoordinate = (extent.height - $0.maxY) + (height / 2)
             let radius = 15
             
             let areaImage = CIFilter(
-                name: FilterType.CIGuassianFilter.rawValue,
+                name: FilterType.CIRadialGradient.rawValue,
                 parameters: [
                     kCIInputCenterKey: CIVector(x: xCenterCoordinate, y: yCenterCoordinate),
                     "inputRadius0": NSNumber(value: radius),
-                    "inputRadius1": NSNumber(value: radius+1),
+                    "inputRadius1": NSNumber(value: radius + 1),
                     "inputColor0": CIColor(red: .zero, green: 1, blue: 0, alpha: 1),
-                    "inputcolor1": CIColor(color: .clear)
+                    "inputColor1": CIColor(color: .clear)
                 ]
             )?.outputImage
             

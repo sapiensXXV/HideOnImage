@@ -14,6 +14,7 @@ extension Mosaic {
         guard let image = self.currentImage,
               !detectBoundInfo.isEmpty else {
             // TODO: - 에러처리, 감지된 얼굴 없음 알림 등
+            print("감지된 얼굴이 없습니다.")
             return
         }
         
