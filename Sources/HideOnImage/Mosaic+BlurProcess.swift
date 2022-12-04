@@ -9,22 +9,6 @@ import UIKit
 
 
 extension Mosaic {
-//    public func applyFsdfilter() {
-//        guard let ciImage = CIImage(image: image),
-//              let blurredImage = ciImage.gaussianBlur(),
-//              let maskImage = ciImage.maskAreas(selectedFaceRects),
-//              let blendedImage = ciImage.blendWithMask(maskImage, inputImage: blurredImage),
-//              let cgImage = BlurredImageViewModel.context.createCGImage(
-//                blendedImage,
-//                from: blendedImage.extent
-//              )
-//        else {
-//            blurCompletionHandler?(nil)
-//            return
-//        }
-//
-//        blurCompletionHandler?(UIImage(cgImage: cgImage))
-//    }
     
     public func applyMosaic(with faceRects: [CGRect]) {
         guard let image = self.currentImage,
