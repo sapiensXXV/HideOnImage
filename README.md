@@ -1,2 +1,3 @@
-# Hide-On-Image
-Face auto detection mosaic library
+# HideOnImage
+
+A description of this package.
