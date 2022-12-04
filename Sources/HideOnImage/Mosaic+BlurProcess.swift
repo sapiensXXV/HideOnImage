@@ -31,7 +31,7 @@ extension Mosaic {
         }
         
         let completeImage = UIImage(cgImage: cgImage)
-        delegate?.MosaicImageProcessDidFinish(with: completeImage)
+        delegate?.mosaicImageProcessDidFinish(with: completeImage)
     }
     
 }
