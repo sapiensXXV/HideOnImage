@@ -15,10 +15,10 @@ public final class Mosaic: MosaicProtocol {
     // MARK: - Properties
     public lazy var faceDetectionRequest: VNDetectFaceRectanglesRequest?
         = VNDetectFaceRectanglesRequest(completionHandler: handleDetectedFaces)
+    public static let context = CIContext()
     public var detectBoundInfo: [CGRect]
     public var currentImage: UIImage?
     public var delegate: MosaicDelegate?
-    
     
     // MARK: - Initializers
     public init() {
