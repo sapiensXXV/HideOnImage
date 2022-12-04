@@ -10,7 +10,7 @@ import UIKit
 
 extension Mosaic {
     
-    public func applyMosaic(with faceRects: [CGRect]) {
+    public func applyMosaic() {
         guard let image = self.currentImage,
               !detectBoundInfo.isEmpty else {
             // TODO: - 에러처리, 감지된 얼굴 없음 알림 등
