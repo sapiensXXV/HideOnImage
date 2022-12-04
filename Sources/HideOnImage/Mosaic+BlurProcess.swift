@@ -26,7 +26,7 @@ extension Mosaic {
 //        blurCompletionHandler?(UIImage(cgImage: cgImage))
 //    }
     
-    public func applyMosaic() {
+    public func applyMosaic(with faceRects: [CGRect]) {
         guard let image = self.currentImage,
               !detectBoundInfo.isEmpty else {
             // TODO: - 에러처리, 감지된 얼굴 없음 알림 등
@@ -34,12 +34,19 @@ extension Mosaic {
         }
         
         guard let ciImage = CIImage(image: image),
-              let mosaicImage = ciImage.gaussianBlur() else {
+              let mosaicImage = ciImage.gaussianBlur(),
+              let maskImage = ciImage.maskSelectedBound(detectBoundInfo),
+              let combinedImage = ciImage.combineMosaicAndMask(maskImage: maskImage, mosaicImage: mosaicImage),
+              let cgImage = Mosaic.context.createCGImage(
+                combinedImage,
+                from: combinedImage.extent
+              )
+        else {
             // TODO: - 이미지처리 실패 에러
             return
         }
         
-        let completeImage = UIImage(ciImage: mosaicImage)
+        let completeImage = UIImage(cgImage: cgImage)
         delegate?.MosaicImageProcessDidFinish(with: completeImage)
     }
     

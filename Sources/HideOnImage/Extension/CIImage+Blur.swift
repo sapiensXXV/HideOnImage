@@ -20,10 +20,57 @@ extension CIImage {
         )?.outputImage
     }
     
-    
-    public enum FilterType: String {
-        // TODO: - 추후 추가적인 필터 추가
-        case CIGuassianFilter
+    public func maskSelectedBound(_ bounds: [CGRect]) -> CIImage? {
+        // 블러될 영역에 마스크를 씌우고, 블러처리한 이미지와 합쳐서 결과물로 선택된 영역만 모자이크 처리된 이미지를 얻게 된다.
+        
+        var maskImage = CIImage?.none
+        
+        bounds.forEach {
+            let width = $0.size.width
+            let height = $0.size.height
+            let xCenterCoordinate = $0.origin.x + (width / 2)
+            let yCenterCoordinate = $0.origin.y + (height / 2)
+            let radius = 15
+            
+            let areaImage = CIFilter(
+                name: FilterType.CIGuassianFilter.rawValue,
+                parameters: [
+                    kCIInputCenterKey: CIVector(x: xCenterCoordinate, y: yCenterCoordinate),
+                    "inputRadius0": NSNumber(value: radius),
+                    "inputRadius1": NSNumber(value: radius+1),
+                    "inputColor0": CIColor(red: .zero, green: 1, blue: 0, alpha: 1),
+                    "inputcolor1": CIColor(color: .clear)
+                ]
+            )?.outputImage
+            
+            guard let backgroundImage = maskImage,
+                  let areaImage else {
+                maskImage = areaImage
+                return
+            }
+            
+            maskImage = CIFilter(
+                name: FilterType.CISourceOverCompositing.rawValue,
+                parameters: [
+                    kCIInputImageKey: areaImage,
+                    kCIInputBackgroundImageKey: backgroundImage
+                ]
+            )?.outputImage
+        }
+        
+        return maskImage
     }
+    
+    public func combineMosaicAndMask(maskImage: CIImage, mosaicImage: CIImage) -> CIImage? {
+        return CIFilter(
+            name: FilterType.CIBlendWithMask.rawValue,
+            parameters: [
+                kCIInputImageKey: mosaicImage,
+                kCIInputBackgroundImageKey: self,
+                kCIInputMaskImageKey: maskImage
+            ]
+        )?.outputImage
+    }
+    
 }
 
