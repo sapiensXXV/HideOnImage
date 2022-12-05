@@ -39,6 +39,7 @@ extension class_name: MosaicDelegate {
 얼굴을 탐지하는데는 다음 두가지 유형 중 하나를 선택할 수 있습니다.
 - Vision Framework
 - CIDetector
+
 `convert(with:type:)`메서드를 호출할 때 어떤 유형으로 얼굴을 탐지할 지 선택할 수 있습니다. 타입은 `ConvertType`열거형으로 구분됩니다.
 
 ### Vision Framework를 사용하기
@@ -111,6 +112,7 @@ extension class_name: MosaicDelegate {
 You can choose one of two types of face detection:
 - Vision Framework
 - CIDetector
+
 When calling the `convert(with:type:)` method, you can choose which type to detect the face. Types are categorized as 'ConvertType' enumeration.
 
 ### Using the Vision Framework
