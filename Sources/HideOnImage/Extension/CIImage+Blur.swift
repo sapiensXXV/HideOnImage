@@ -30,7 +30,7 @@ extension CIImage {
             let height = $0.size.height
             let xCenterCoordinate = $0.origin.x + (width / 2)
             let yCenterCoordinate = (extent.height - $0.maxY) + (height / 2)
-            let radius = min(width, height) / 2.2
+            let radius = min(width, height) / 1.7
             
             let areaImage = CIFilter(
                 name: FilterType.CIRadialGradient.rawValue,
