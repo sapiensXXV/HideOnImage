@@ -19,10 +19,14 @@ public final class Mosaic: MosaicProtocol {
     public var detectBoundInfo: [CGRect]
     public var currentImage: UIImage?
     public var delegate: MosaicDelegate?
-    
+    public let faceDetector: CIDetector?
+
     // MARK: - Initializers
     public init() {
         self.detectBoundInfo = []
+        let options = [CIDetectorAccuracy: CIDetectorAccuracyLow]
+        self.faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: options)
+        
     }
     
 }
