@@ -67,6 +67,14 @@ mosaic.delegate = self
 
 let image = UIImage(named: "my-image")
 mosaic.convert(with: image)
+...
+
+extension class_name: MosaicDelegate {
+
+    func mosaicImageProcessDidFinish(with result: UIImage) {
+        self.imageView.image = result
+    }
+}
 ```
 
 ### ⚠️ CAUTION
