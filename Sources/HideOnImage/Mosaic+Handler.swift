@@ -29,7 +29,7 @@ extension Mosaic {
             self.addDetectInfo(bound: bound)
         }
         
-        // 이미지를 처리해서 delegate 메서드로 전달한다.
-        applyMosaic()
+        // 모자이크 처리
+        applyMosaic(with: self.detectBoundInfo)
     }
 }

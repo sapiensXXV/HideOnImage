@@ -12,7 +12,7 @@ import Vision
 
 extension Mosaic {
     public func convert(with image: UIImage?, type: ConvertType = .vision) {
-        print(#function)
+        
         guard let image = image,
               let cgImage = image.cgImage,
               let ciImage = CIImage(image: image) else {
@@ -29,8 +29,19 @@ extension Mosaic {
         case .ciDetector:
             startCIDetect(ciImage: ciImage, orientation: cgOrientation)
         }
+    }
+    
+    public func startCIDetect(ciImage: CIImage, orientation: CGImagePropertyOrientation) {
         
-        
+        DispatchQueue.global(qos: .userInitiated).async {
+            let faces = self.faceDetector?.features(in: ciImage)
+            guard let detectedBounds = faces?.compactMap({ $0.bounds }) else {
+                print("감지된 얼굴이 없습니다.")
+                return
+            }
+            self.applyMosaic(with: detectedBounds)
+        }
+
     }
     
     public func startVisionRequest(image: CGImage, orientation: CGImagePropertyOrientation) {
