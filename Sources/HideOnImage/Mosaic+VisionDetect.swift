@@ -11,15 +11,26 @@ import Vision
 
 
 extension Mosaic {
-    public func convert(with image: UIImage?) {
+    public func convert(with image: UIImage?, type: ConvertType = .vision) {
+        print(#function)
         guard let image = image,
-              let cgImage = image.cgImage else {
+              let cgImage = image.cgImage,
+              let ciImage = CIImage(image: image) else {
             print("Can not find UIImage")
             return
         }
         self.currentImage = image
         let cgOrientation = CGImagePropertyOrientation(image.imageOrientation)
-        startVisionRequest(image: cgImage, orientation: cgOrientation)
+        
+        switch type {
+        case .vision:
+            startVisionRequest(image: cgImage, orientation: cgOrientation)
+            
+        case .ciDetector:
+            startCIDetect(ciImage: ciImage, orientation: cgOrientation)
+        }
+        
+        
     }
     
     public func startVisionRequest(image: CGImage, orientation: CGImagePropertyOrientation) {
