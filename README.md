@@ -96,7 +96,7 @@ let image = UIImage(named: "my-image")
 mosaic.convert(with: image, type: .vision)
 ```
 
-### ### CIDetector
+### CIDetector
 To use 'CIDetector':
 ```swift
 let image = UIImage(named: "my-image")
