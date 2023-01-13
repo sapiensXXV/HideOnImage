@@ -191,9 +191,9 @@ mosaic.convert(uiImage: image)
 
 ## Set Image Type
 The following types of images can be passed to process mosaic:
-- - **`UIImage`** 
-- - **`CGImage`**
-- - **`CIImage`**
+- **`UIImage`** 
+- **`CGImage`**
+- **`CIImage`**
 
 A convert method that receives three types of images is defined.
 ```swift
