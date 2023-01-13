@@ -184,6 +184,7 @@ configuration.radius = 30
 mosaic.convert(uiImage: image)
 ```
 
+
 ## Set Image Type
 The following types of images can be passed to process mosaic:
 - - **`UIImage`** 
@@ -191,6 +192,7 @@ The following types of images can be passed to process mosaic:
 - - **`CIImage`**
 
 A convert method that receives three types of images is defined.
+
 ```swift
 func convert(uiImage: UIImage?)
 func convert(cgImage: CGImage?)
