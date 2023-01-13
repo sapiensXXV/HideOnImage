@@ -11,9 +11,9 @@ import Vision
 
 
 extension Mosaic {
-    public func convert(with image: UIImage?, type: ConvertType = .vision) {
+    public func convert(uiImage: UIImage?) {
         
-        guard let image = image,
+        guard let image = uiImage,
               let cgImage = image.cgImage,
               let ciImage = CIImage(image: image) else {
             print("Can not find UIImage")
@@ -22,7 +22,47 @@ extension Mosaic {
         self.currentImage = image
         let cgOrientation = CGImagePropertyOrientation(image.imageOrientation)
         
-        switch type {
+        switch configuration.aiType {
+        case .vision:
+            startVisionRequest(image: cgImage, orientation: cgOrientation)
+            
+        case .ciDetector:
+            startCIDetect(ciImage: ciImage, orientation: cgOrientation)
+        }
+    }
+    
+    public func convert(cgImage: CGImage?) {
+        
+        guard let cgImage = cgImage else {
+            print("Can not find CGImage")
+            return
+        }
+        let image = UIImage(cgImage: cgImage)
+        let ciImage = CIImage(cgImage: cgImage)
+        self.currentImage = image
+        let cgOrientation = CGImagePropertyOrientation(image.imageOrientation)
+        
+        switch configuration.aiType {
+        case .vision:
+            startVisionRequest(image: cgImage, orientation: cgOrientation)
+            
+        case .ciDetector:
+            startCIDetect(ciImage: ciImage, orientation: cgOrientation)
+        }
+    }
+    
+    public func convert(ciImage: CIImage?) {
+        
+        guard let ciImage = ciImage,
+              let cgImage = ciImage.cgImage else {
+            print("Can not find CIImage")
+            return
+        }
+        let image = UIImage(ciImage: ciImage)
+        self.currentImage = image
+        let cgOrientation = CGImagePropertyOrientation(image.imageOrientation)
+        
+        switch configuration.aiType {
         case .vision:
             startVisionRequest(image: cgImage, orientation: cgOrientation)
             
@@ -36,7 +76,7 @@ extension Mosaic {
         DispatchQueue.global(qos: .userInitiated).async {
             let faces = self.faceDetector?.features(in: ciImage)
             guard let detectedBounds = faces?.compactMap({ $0.bounds }) else {
-                print("감지된 얼굴이 없습니다.")
+                print("No faces detected.")
                 return
             }
             self.applyMosaic(with: detectedBounds)
