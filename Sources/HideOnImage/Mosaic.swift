@@ -16,6 +16,7 @@ public final class Mosaic: MosaicProtocol {
     public lazy var faceDetectionRequest: VNDetectFaceRectanglesRequest
         = VNDetectFaceRectanglesRequest(completionHandler: handleDetectedFaces)
     public static let context = CIContext()
+    public var configuration: MosaicConfiguration = MosaicConfiguration()
     public var detectBoundInfo: [CGRect]
     public var currentImage: UIImage?
     public var delegate: MosaicDelegate?

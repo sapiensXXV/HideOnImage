@@ -11,8 +11,7 @@ import UIKit
 public protocol MosaicProtocol {
 
     var delegate: MosaicDelegate? { get set }
-
-    func convert(with image: UIImage?, type: ConvertType)
+    func convert(with image: UIImage?)
 }
 
 public protocol MosaicDelegate {

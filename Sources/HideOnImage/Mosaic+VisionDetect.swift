@@ -11,7 +11,7 @@ import Vision
 
 
 extension Mosaic {
-    public func convert(with image: UIImage?, type: ConvertType = .vision) {
+    public func convert(with image: UIImage?) {
         
         guard let image = image,
               let cgImage = image.cgImage,
@@ -22,7 +22,7 @@ extension Mosaic {
         self.currentImage = image
         let cgOrientation = CGImagePropertyOrientation(image.imageOrientation)
         
-        switch type {
+        switch configuration.aiType {
         case .vision:
             startVisionRequest(image: cgImage, orientation: cgOrientation)
             
@@ -36,7 +36,7 @@ extension Mosaic {
         DispatchQueue.global(qos: .userInitiated).async {
             let faces = self.faceDetector?.features(in: ciImage)
             guard let detectedBounds = faces?.compactMap({ $0.bounds }) else {
-                print("감지된 얼굴이 없습니다.")
+                print("No faces detected.")
                 return
             }
             self.applyMosaic(with: detectedBounds)
