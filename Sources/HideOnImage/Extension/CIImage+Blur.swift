@@ -10,7 +10,7 @@ import UIKit
 
 extension CIImage {
 
-    public func gaussianBlur(radius: CGFloat = 15) -> CIImage? {
+    public func gaussianBlur(radius: CGFloat) -> CIImage? {
         return CIFilter(
             name: FilterType.CIGaussianBlur.rawValue,
             parameters: [

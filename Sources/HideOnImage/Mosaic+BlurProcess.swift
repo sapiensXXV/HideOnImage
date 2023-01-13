@@ -19,7 +19,7 @@ extension Mosaic {
         }
 
         guard let ciImage = CIImage(image: image),
-              let mosaicImage = ciImage.gaussianBlur(),
+              let mosaicImage = ciImage.gaussianBlur(radius: configuration.radius),
               let maskImage = ciImage.maskSelectedBound(detectBounds),
               let combinedImage = ciImage.combineMosaicAndMask(maskImage: maskImage, mosaicImage: mosaicImage),
               let cgImage = Mosaic.context.createCGImage(
