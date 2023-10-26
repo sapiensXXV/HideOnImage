@@ -10,7 +10,7 @@
 ## 설치
 Swift Package Manager(SPM)에 다음 Package URL로 사용할 수 있습니다.
 ```
-https://github.com/January1st-98/HideOnImage.git
+https://github.com/mynameisjaehoon/HideOnImage.git
 ```
 
 ## 사용법
@@ -116,7 +116,7 @@ HideOnImage is a face detection automatic mosaic library. It automatically recog
 ## Installation
 Available in Swift Package Manager (SPM) as the following package URL
 ```
-https://github.com/January1st-98/HideOnImage.git
+https://github.com/mynameisjaehoon/HideOnImage.git
 ```
 
 ## How to use it
